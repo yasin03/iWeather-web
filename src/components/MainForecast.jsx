@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useForecastStore from "../../store";
 import Image from "next/image";
 import { fahrenheitToCelsius, formatSunDate, kelvinToCelsius } from "@/utils";
@@ -6,12 +6,17 @@ import { fahrenheitToCelsius, formatSunDate, kelvinToCelsius } from "@/utils";
 const MainForecast = () => {
   const forecast = useForecastStore((state) => state.forecast);
   const weather = useForecastStore((state) => state.weather);
+  const [degree, setDegree] = useState(weather?.wind?.deg);
+
+  useEffect(() => {
+    setDegree(weather?.wind?.deg + 45);
+  }, [degree]);
 
   console.log(weather);
   return (
-    <div className="bg-gray-300  w-full h-[300px] rounded-3xl flex flex-col lg:flex-row">
-      <div className="relative w-full h-1/2 lg:w-1/2 lg:h-full ">
-        <div className=" w-full h-full">
+    <div className="bg-gray-300  w-full rounded-3xl flex flex-col lg:flex-row">
+      <div className="relative w-full h-1/2 lg:w-1/2 lg:h-full">
+        <div className="absolute w-full h-[200px] lg:h-full">
           <Image
             src="/weather/RainDay.png"
             layout="fill"
@@ -20,8 +25,8 @@ const MainForecast = () => {
             className=" rounded-3xl"
           />
         </div>
-        <div className="absolute top-0 p-6 flex justify-between items-center">
-          <div>
+        <div className=" p-3 lg:p-6 flex flex-row justify-between items-center">
+          <div className="flex flex-col justify-between">
             <div className="relative w-16 h-16 lg:w-32 lg:h-32">
               <Image
                 src={`/icons/${weather?.weather[0]?.icon}.png`}
@@ -31,14 +36,14 @@ const MainForecast = () => {
                 alt=""
               />
             </div>
-            <p className="text-3xl md:text-4xl lg:text-7xl font-semibold text-white">
-              {kelvinToCelsius(weather?.main?.temp)}°C
+            <p className="z-50 text-3xl md:text-4xl lg:text-7xl font-semibold text-white">
+              {(weather?.main?.temp).toFixed(0)}°C
             </p>
           </div>
-          <div className="">
-            <div className="flex items-center">
-              <p className="font-semibold text-white">
-                {weather?.main?.humidity}°C
+          <div className=" flex flex-col items-end gap-y-4">
+            <div className="flex items-center ">
+              <p className="z-50 font-semibold text-white text-sm">
+                {weather?.main?.humidity}% Nem
               </p>
               <div className="relative w-4 h-4 lg:w-6 lg:h-6">
                 <Image
@@ -51,12 +56,38 @@ const MainForecast = () => {
               </div>
             </div>
             <div className="flex items-center">
-              <p className="font-semibold text-white">
-                {weather?.main?.pressure}%
+              <p className="z-50 font-semibold text-white text-sm">
+                {weather?.main?.pressure} hPa Basınç
               </p>
               <div className="relative w-4 h-4 lg:w-6 lg:h-6">
                 <Image
-                  src={`/weatherIcons/drop-half-bottom.png`}
+                  src={`/weatherIcons/thermometer.png`}
+                  layout="fill"
+                  objectFit="cover"
+                  className=""
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="flex items-center">
+              <div
+                className={`relative w-4 h-4 lg:w-6 lg:h-6`}
+                style={{ transform: `rotate(${degree}deg)` }}
+              >
+                <Image
+                  src={`/weatherIcons/navigation-arrow.png`}
+                  layout="fill"
+                  objectFit="cover"
+                  className={``}
+                  alt=""
+                />
+              </div>
+              <p className="z-50 font-semibold text-white text-sm">
+                {weather?.wind?.speed} mt Rüzgar
+              </p>
+              <div className="relative w-4 h-4 lg:w-6 lg:h-6">
+                <Image
+                  src={`/weatherIcons/wind.png`}
                   layout="fill"
                   objectFit="cover"
                   className=""

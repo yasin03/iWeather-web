@@ -1,6 +1,7 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
+import Header from "@/components/Header";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -13,17 +14,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={nunito.className}>
-        <div className="overflow-hidden">
-          <Image
-            src={"/bg.png"}
-            blurRadius={30}
-            alt="bg"
-            width={0}
-            height={0}
-            className="absolute top-0 left-0 w-screen -z-10"
-          />
-          {children}
-        </div>
+        <Header />
+
+        {children}
       </body>
     </html>
   );

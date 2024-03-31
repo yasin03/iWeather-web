@@ -1,3 +1,8 @@
+export function formatUnixDate(unix) {
+  const date = new Date(unix * 1000); //
+
+  return date;
+}
 export function formatSunDate(unix) {
   const tarih = new Date(unix * 1000); //
 
