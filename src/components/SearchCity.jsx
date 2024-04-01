@@ -23,9 +23,9 @@ const SearchCity = ({ setInputValue }) => {
         disablePortal
         options={cities}
         sx={{ borderRadius: 100 }}
-        renderInput={(params) => <TextField {...params} label="Cities" />}
-        onChange={(event, newValue) => {
-          setValue(newValue);
+        renderInput={(params) => <TextField {...params} label="Şehir Seçiniz" />}
+        onChange={(e) => {
+          setValue(e.target.value);
         }}
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);

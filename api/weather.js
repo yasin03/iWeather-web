@@ -1,6 +1,13 @@
 import axios from "axios";
 const key = process.env.OPENWEATHER_API_KEY;
 
+export const fetchSearchLocation = async (query) => {
+  const res = await axios.get(
+    `http://api.weatherapi.com/v1/forecast.json?key=ecf700bdb56546df9cc120424230106&q=${query}&days=1&aqi=yes&alerts=no`
+  );
+  return res.data;
+};
+
 const forecastEndpoints = (city) =>
   `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=6d1569f544cff0b8b160fcb8bdcf7245&units=metric`;
 

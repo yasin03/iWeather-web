@@ -12,6 +12,12 @@ export function formatSunDate(unix) {
   return `${saat}:${dakika}`;
 }
 
+export function getShortDayName(dateString) {
+  const date = new Date(dateString);
+  const options = { weekday: "short" };
+  return new Intl.DateTimeFormat("tr-TR", options).format(date);
+}
+
 export function fahrenheitToCelsius(fahrenheit) {
   const celsius = ((fahrenheit - 32) * 5) / 9;
   return celsius;

@@ -26,7 +26,7 @@ const HourlyForecast = () => {
           return (
             <div
               key={index}
-              className="flex-column items-center justify-center p-3 border-2 border-gray-300 border-opacity-30 rounded-xl mr-3 py-12 px-6 "
+              className="flex-column items-center justify-center p-3 border-2 border-gray-300 border-opacity-30 rounded-xl mr-3 py-12 px-6 hover:scale-95 transition-all"
             >
               <Image
                 src={`/icons/${item?.weather[0]?.icon}.png`}
