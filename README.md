@@ -18,13 +18,13 @@ Bu NextJs projesi, hava durumu bilgilerini gösteren bir web uygulamasını içe
 
 ## Ekran Görüntüleri
 
-![Ana Sayfa](assets/ss/ss1.png)
+![Ana Sayfa](public/ss/ss1.png)
 _Ana Sayfa_
 
-![Ana Sayfa](assets/ss/ss2.png)
+![Ana Sayfa](public/ss/ss2.png)
 _Ana Sayfa_
 
-![Günlük Hava Durumu](assets/ss/ss3.png)
+![Günlük Hava Durumu](public/ss/ss3.png)
 _Konum Arama_
 
 ## Teknolojiler
